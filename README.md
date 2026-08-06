@@ -5,13 +5,6 @@
 
 *Simplifying how customers book and track home maintenance services.*
 
-[![Status](https://img.shields.io/badge/status-in%20development-yellow?style=for-the-badge)](#-project-timeline)
-[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](#-license)
-[![Made for](https://img.shields.io/badge/made%20for-university%20project-orange?style=for-the-badge)]()
-
-</div>
-
----
 
 ## 📚 Table of Contents
 
