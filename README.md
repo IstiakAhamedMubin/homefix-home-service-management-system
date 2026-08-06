@@ -57,7 +57,7 @@
 
 ---
 
-## 🔎Project Overview
+## 🔎HomeFix Project Idea
 
 **HomeFix** is a web-based Home Service Management System developed to simplify the process of booking and managing home maintenance services. The system allows customers to register, log in, browse available services, and submit service requests online.
 
