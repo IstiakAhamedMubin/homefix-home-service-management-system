@@ -13,8 +13,8 @@
 <td valign="top" width="50%">
 
 **🧭 Getting Started**
-- [🔎 Project Overview](#-project-overview)
 - [👥 Team Information](#-team-information)
+- [🔎 Project Overview](#-project-overview)
 - [🎯 Project Objectives](#-project-objectives)
 - [🗂️ Project Planning](#-project-planning)
 
@@ -47,6 +47,17 @@
 </td>
 </tr>
 </table>
+---
+
+## 👥 Team Information
+
+**Group Name:** Team HomeFix
+
+| SL No | Member Name | Student ID |
+|:---:|---|:---:|
+| 01 | Istiak Ahamed | 2024100000273 |
+| 02 | MD. Shahedur Rahman Sajid | 2023100000589 |
+| 03 | Mir Nafiul Islam Nirjhor | 2023100000599 |
 
 ---
 
@@ -59,18 +70,6 @@ Customers can book services such as **Electrician, Plumber, AC Repair, Carpenter
 The administrator manages customers, service providers, service categories, and booking requests. After receiving a booking, the administrator assigns an available service provider and updates the booking status from **Pending → Assigned → Completed**.
 
 The system provides a centralized platform that improves service management, reduces manual work, and enables customers to track the status and history of their bookings.
-
----
-
-## 👥 Team Information
-
-**Group Name:** Team HomeFix
-
-| SL No | Member Name | Student ID |
-|:---:|---|:---:|
-| 01 | Istiak Ahamed | 2024100000273 |
-| 02 | MD. Shahedur Rahman Sajid | 2023100000589 |
-| 03 | Mir Nafiul Islam Nirjhor | 2023100000599 |
 
 ---
 
