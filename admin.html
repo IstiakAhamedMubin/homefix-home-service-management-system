@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       This is a SINGLE-PAGE admin panel: the sidebar links don't
+       load new HTML files, they use JavaScript to show/hide
+       ".admin-section" blocks below. This keeps all the admin
+       management screens in one file, which is simpler to
+       maintain for a frontend-only demo than 6 separate pages.
+       ========================================================= -->
+  <div class="app-layout">
+
+    <!-- ============================= -->
+    <!-- SIDEBAR / NAVIGATION          -->
+    <!-- ============================= -->
+    <aside class="app-sidebar app-sidebar-admin">
+      <a href="admin.html" class="logo app-sidebar-logo">HomeFix Admin</a>
+
+      <nav class="app-sidebar-nav" id="adminNav">
+        <a href="#dashboard" class="app-nav-link active" data-section="dashboard">Dashboard</a>
+        <a href="#customers" class="app-nav-link" data-section="customers">Customers</a>
+        <a href="#providers" class="app-nav-link" data-section="providers">Service Providers</a>
+        <a href="#categories" class="app-nav-link" data-section="categories">Service Categories</a>
+        <a href="#bookings" class="app-nav-link" data-section="bookings">Bookings</a>
+        <a href="#payments" class="app-nav-link" data-section="payments">Payments</a>
+      </nav>
+
+      <button type="button" class="app-nav-link app-logout-btn" id="adminLogoutBtn">Log Out</button>
+    </aside>
+
+
+    <!-- ============================= -->
+    <!-- MAIN CONTENT                  -->
+    <!-- ============================= -->
+    <main class="app-main">
+
+      <!-- =====================================================
+           SECTION: DASHBOARD (overview)
+           ===================================================== -->
+      <div class="admin-section active" id="section-dashboard">
+
+        <section class="dash-welcome">
+          <h1>Admin Dashboard</h1>
+          <p>An overview of customers, providers, bookings, and payments.</p>
+        </section>
+
+        <section class="stats-grid" id="statsGrid">
+          <div class="stat-card">
+            <span class="stat-label">Total Customers</span>
+            <span class="stat-number" id="statCustomers">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Service Providers</span>
+            <span class="stat-number" id="statProviders">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Bookings</span>
+            <span class="stat-number" id="statTotalBookings">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Pending Bookings</span>
+            <span class="stat-number stat-pending" id="statPending">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Completed Bookings</span>
+            <span class="stat-number stat-completed" id="statCompleted">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Payments</span>
+            <span class="stat-number" id="statPayments">-</span>
+          </div>
+        </section>
+
+        <div class="dash-grid">
+
+          <section class="dash-card booking-history-card">
+            <div class="dash-card-header">
+              <h2>Recent Bookings</h2>
+              <a href="#bookings" class="link-muted" data-section="bookings">View all</a>
+            </div>
+            <div class="dash-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr><th>Booking ID</th><th>Customer</th><th>Service</th><th>Date</th><th>Status</th></tr>
+                </thead>
+                <tbody id="recentBookingsBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="dash-card status-overview-card">
+            <div class="dash-card-header">
+              <h2>Booking Status Overview</h2>
+            </div>
+            <div class="status-overview" id="statusOverview"></div>
+          </section>
+
+        </div>
+      </div>
+
+
+      <!-- =====================================================
+           SECTION: MANAGE CUSTOMERS
+           ===================================================== -->
+      <div class="admin-section" id="section-customers">
+        <section class="dash-welcome">
+          <h1>Manage Customers</h1>
+          <p>View registered customers and remove accounts if needed.</p>
+        </section>
+
+        <section class="dash-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Name</th><th>Phone</th><th>Email</th><th>Bookings</th><th>Joined</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="customersBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+
+      <!-- =====================================================
+           SECTION: MANAGE SERVICE PROVIDERS
+           ===================================================== -->
+      <div class="admin-section" id="section-providers">
+        <section class="dash-welcome dash-welcome-row">
+          <div>
+            <h1>Manage Service Providers</h1>
+            <p>Add, edit, or remove the providers HomeFix works with.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addProviderBtn">+ Add Provider</button>
+        </section>
+
+        <section class="dash-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Name</th><th>Category</th><th>Phone</th><th>Availability</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="providersBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+
+      <!-- =====================================================
+           SECTION: MANAGE SERVICE CATEGORIES
+           ===================================================== -->
+      <div class="admin-section" id="section-categories">
+        <section class="dash-welcome dash-welcome-row">
+          <div>
+            <h1>Manage Service Categories</h1>
+            <p>Control which services customers can book.</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="addCategoryBtn">+ Add Category</button>
+        </section>
+
+        <section class="dash-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Category</th><th>Description</th><th>Base Price</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="categoriesBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+
+      <!-- =====================================================
+           SECTION: MANAGE BOOKINGS
+           ===================================================== -->
+      <div class="admin-section" id="section-bookings">
+        <section class="dash-welcome">
+          <h1>Manage Bookings</h1>
+          <p>View details, assign a provider, and update booking status.</p>
+        </section>
+
+        <section class="dash-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Booking ID</th><th>Customer</th><th>Service</th><th>Date</th><th>Provider</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="bookingsBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+
+      <!-- =====================================================
+           SECTION: PAYMENT INFORMATION
+           ===================================================== -->
+      <div class="admin-section" id="section-payments">
+        <section class="dash-welcome">
+          <h1>Payment Information</h1>
+          <p>A read-only ledger of payments linked to bookings.</p>
+        </section>
+
+        <section class="dash-card">
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Reference</th><th>Customer</th><th>Amount</th><th>Method</th><th>Status</th><th></th></tr>
+              </thead>
+              <tbody id="paymentsBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- =========================================================
+       SHARED MODAL
+       One reusable popup used by every "View / Edit / Assign"
+       action across all the sections above. JavaScript fills in
+       the title and body content depending on which button was
+       clicked.
+       ========================================================= -->
+  <div class="modal-overlay" id="adminModal" hidden>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">Details</h3>
+        <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation,
+       service data, and now the full admin panel logic) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

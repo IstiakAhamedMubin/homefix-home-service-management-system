@@ -1,0 +1,2421 @@
+/* =========================================================
+   HOMEFIX STYLESHEET
+   Organized into sections:
+   1. CSS Variables (design system)
+   2. Reset & Base styles
+   3. Layout helpers
+   4. Buttons
+   5. Header / Navbar
+   6. Hero section
+   7. Intro section
+   8. Services section
+   9. Why Choose Us section
+   10. Call To Action section
+   11. Footer
+   12. Responsive media queries
+   13. Auth pages (Login / Register)
+   14. Services page (services.html)
+   15. Service Details page
+   16. Booking page
+   17. Payment page
+   18. App layout (sidebar, used by Dashboard + Admin)
+   19. Customer Dashboard
+   20. Admin Dashboard (overview)
+   21. Admin Panel management sections
+   ========================================================= */
+
+
+/* =========================================================
+   1. CSS VARIABLES
+   Change a value here and it updates everywhere it's used.
+   ========================================================= */
+:root {
+  /* ===== Color system =====
+     Deep navy (primary) + refined teal (accent) + warm off-white
+     background, instead of the old flat blue-on-white palette.
+     Semantic names so the intent of each color is obvious at a glance. */
+  --primary: #10293D;         /* navy - headers, dark sidebar, strong headings */
+  --primary-dark: #081722;    /* darker navy - hover state on dark elements */
+  --accent: #107E71;          /* teal - primary buttons, links, active states (WCAG AA on white) */
+  --accent-dark: #0E6F64;     /* darker teal - hover state on accent elements */
+  --accent-warm: #D98A3D;     /* warm terracotta - used sparingly for highlights */
+
+  --background: #F7F6F2;      /* soft warm off-white - page background */
+  --surface: #FFFFFF;         /* card / panel background */
+  --surface-alt: #EAF2F1;     /* light teal-tinted background - section fills, hover, selected state */
+  --white: #FFFFFF;           /* literal white - text/icons on dark backgrounds */
+
+  --text-primary: #1B242B;    /* charcoal - headings, body text */
+  --text-secondary: #5C6B70;  /* muted charcoal-gray - captions, helper text */
+  --border: #E2E1DB;          /* soft neutral border */
+
+  --success: #227644;
+  --success-dark: #1B5F36;
+  --success-bg: #DFF4E6;
+  --warning: #945A16;
+  --warning-bg: #FBEEDC;
+  --danger: #B53A3A;
+  --danger-bg: #FBE7E7;
+
+  /* Typography */
+  --font-heading: 'Manrope', 'Segoe UI', Arial, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+
+  /* Spacing (based on an 8px unit) */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 56px;
+  --space-2xl: 88px;
+
+  /* Shared values */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --max-width: 1140px;
+
+  /* Shadows - used sparingly, not on every element */
+  --shadow-sm: 0 1px 3px rgba(16, 32, 45, 0.07);
+  --shadow-md: 0 10px 24px rgba(16, 32, 45, 0.10);
+  --shadow-lg: 0 20px 45px rgba(16, 32, 45, 0.16);
+}
+
+
+/* =========================================================
+   2. RESET & BASE STYLES
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* padding/border no longer add to element width */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-primary);
+  background-color: var(--background);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--primary);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Consistent keyboard-focus outline across the whole site. Uses
+   :focus-visible so it only shows for keyboard navigation, not
+   every mouse click - matches the new accent color instead of
+   leaving it to each browser's inconsistent default. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   3. LAYOUT HELPERS
+   ========================================================= */
+
+/* Centers content and keeps a max width on large screens */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Generic section spacing so every section feels consistent */
+section {
+  padding: var(--space-2xl) 0;
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin-top: -var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+
+/* =========================================================
+   4. BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+              transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface-alt);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   5. HEADER / NAVBAR
+   ========================================================= */
+.site-header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-sm) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.nav-links a {
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* Marks the current page in the top navbar - a small underline dash
+   rather than a full color swap, so it stays subtle */
+.nav-links a.nav-active {
+  color: var(--accent);
+}
+
+.nav-links a.nav-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--accent);
+}
+
+/* Register button sits inside the nav, so it needs a tighter fit
+   than the large hero/CTA buttons */
+.nav-links .btn {
+  padding: 9px 20px;
+  font-size: 14px;
+}
+
+.nav-links .btn:hover {
+  transform: none; /* keep the nav button steady, only the color shifts */
+}
+
+/* Hamburger menu button (hidden on desktop, shown on mobile) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2.5px;
+  width: 100%;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+
+/* =========================================================
+   6. HERO SECTION
+   ========================================================= */
+.hero {
+  background: linear-gradient(180deg, var(--surface-alt) 0%, var(--background) 100%);
+  padding: var(--space-2xl) 0;
+  overflow: hidden;
+}
+
+.hero .container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+}
+
+.hero-content {
+  flex: 1 1 480px;
+  max-width: 560px;
+  animation: heroFadeUp 0.6s ease both;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: var(--space-md);
+}
+
+.hero-eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.hero h1 {
+  font-size: 46px;
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+}
+
+.hero p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  max-width: 460px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+/* ----- Hero visual: a small "product preview" card instead of a stock photo ----- */
+.hero-visual {
+  flex: 1 1 380px;
+  max-width: 400px;
+  animation: heroFadeUp 0.7s ease 0.1s both;
+}
+
+.hero-visual-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+}
+
+.hero-visual-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.hero-visual-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background-color: var(--surface-alt);
+  border-radius: 50%;
+}
+
+.hero-visual-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hero-visual-top strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.hero-visual-tracker {
+  margin: var(--space-lg) 0;
+}
+
+.hero-visual-provider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.hero-visual-provider strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.hero-visual-chips {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  justify-content: center;
+}
+
+.hero-visual-chip {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-visual-chip svg {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content, .hero-visual { animation: none; }
+}
+
+
+/* =========================================================
+   7. INTRO SECTION
+   ========================================================= */
+.intro {
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.intro .container {
+  max-width: 760px;
+}
+
+.intro p {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   8. SERVICES SECTION
+   ========================================================= */
+.services {
+  background-color: var(--white);
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-md);
+  text-align: left;
+  margin-top: var(--space-lg);
+}
+
+.service-card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background-color: var(--surface-alt);
+  border-radius: 50%;
+  margin-bottom: var(--space-md);
+}
+
+.service-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.service-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.service-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   9. WHY CHOOSE US SECTION
+   ========================================================= */
+.why-us {
+  text-align: center;
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  text-align: left;
+  margin-top: var(--space-lg);
+}
+
+.why-card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md) var(--space-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.why-card-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background-color: var(--surface-alt);
+  border-radius: 50%;
+  margin-bottom: var(--space-sm);
+}
+
+.why-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.why-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.why-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.why-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   10. CALL TO ACTION SECTION
+   ========================================================= */
+.cta {
+  background-color: var(--primary);
+  color: var(--white);
+  text-align: center;
+}
+
+.cta h2 {
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+}
+
+.cta p {
+  color: var(--surface-alt);
+  font-size: 16px;
+  margin-bottom: var(--space-lg);
+}
+
+.cta .btn-primary {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+.cta .btn-primary:hover {
+  background-color: var(--surface-alt);
+}
+
+
+/* =========================================================
+   11. FOOTER
+   ========================================================= */
+.site-footer {
+  background-color: var(--primary-dark);
+  color: var(--surface-alt);
+  padding-top: var(--space-xl);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+.footer-brand .logo {
+  color: var(--white);
+}
+
+.footer-brand p {
+  margin-top: var(--space-sm);
+  font-size: 14px;
+  color: #9FB8BA;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  color: var(--white);
+  font-family: var(--font-heading);
+  margin-bottom: var(--space-sm);
+  font-size: 15px;
+}
+
+.footer-links ul li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-links a,
+.footer-contact p {
+  font-size: 14px;
+  color: #9FB8BA;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 13px;
+  color: #7A96A0;
+  padding: var(--space-md) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: var(--space-lg);
+}
+
+
+/* =========================================================
+   12. RESPONSIVE MEDIA QUERIES
+   ========================================================= */
+
+/* Tablet view */
+@media (max-width: 992px) {
+
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .why-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+
+  section {
+    padding: var(--space-xl) 0;
+  }
+
+  .hero {
+    padding: var(--space-xl) 0;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
+
+  /* Stack the nav links into a dropdown menu on mobile */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-links.open {
+    max-height: 320px; /* enough height to show all links when open */
+  }
+
+  .nav-links li {
+    width: 100%;
+    padding: var(--space-sm) var(--space-lg);
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-links .btn {
+    display: inline-flex;
+    margin-top: var(--space-xs);
+  }
+
+  /* Show the hamburger button on mobile */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-us-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   13. AUTH PAGES (Login / Register)
+   Shared styles for the centered form-card layout used by
+   both login.html and register.html.
+   ========================================================= */
+
+.auth-section {
+  padding: var(--space-2xl) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-lg) var(--space-lg);
+}
+
+.auth-card-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.auth-card-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background-color: var(--surface-alt);
+  border-radius: 50%;
+  margin: 0 auto var(--space-md);
+}
+
+.auth-card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.auth-card-header h1 {
+  font-size: 26px;
+  margin-bottom: var(--space-xs);
+}
+
+.auth-card-header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Form layout shared by every field */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.form-field input,
+.form-field textarea {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--white);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #A0AEC0;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: var(--surface-alt);
+}
+
+/* Highlight a field red when validation fails */
+.form-field input.invalid,
+.form-field textarea.invalid {
+  border-color: var(--danger);
+}
+
+/* Slightly wider card for forms with more fields, like Register */
+.auth-card-wide {
+  max-width: 480px;
+}
+
+.field-error {
+  display: block;
+  font-size: 12px;
+  color: var(--danger);
+  min-height: 16px;
+  margin-top: 4px;
+}
+
+/* Row that holds "Remember me" on the left and "Forgot password" on the right */
+.form-row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.checkbox-field input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.link-muted {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.link-muted:hover {
+  text-decoration: underline;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: var(--space-xs);
+}
+
+.form-success {
+  font-size: 13px;
+  color: var(--success);
+  text-align: center;
+  min-height: 16px;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: var(--space-lg);
+}
+
+.auth-switch a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+.auth-back-link {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+.auth-back-link a {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.auth-back-link a:hover {
+  color: var(--primary);
+}
+
+/* Auth card on small screens: less outer padding, edge-to-edge feel */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: var(--space-lg) var(--space-md);
+  }
+}
+
+
+/* =========================================================
+   14. SERVICES PAGE (services.html)
+   The homepage already has a lightweight ".service-card"
+   preview. This section adds a fuller card style for the
+   dedicated Services page, which also shows a price and
+   two action buttons - without changing the homepage cards.
+   ========================================================= */
+
+/* Simple banner-style header used at the top of inner pages */
+.page-header {
+  background: linear-gradient(180deg, var(--surface-alt) 0%, var(--background) 100%);
+  text-align: center;
+  padding: var(--space-xl) 0;
+}
+
+.page-header h1 {
+  font-size: 34px;
+  margin-bottom: var(--space-xs);
+}
+
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+/* ----- Booking flow stepper: Service -> Details -> Payment -> Confirmation ----- */
+.flow-stepper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  max-width: 520px;
+  margin: var(--space-lg) auto 0;
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+
+.flow-step-dot {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--surface);
+  border: 2px solid var(--border);
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.flow-step-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.flow-line {
+  flex: 1 1 40px;
+  height: 2px;
+  background-color: var(--border);
+  margin: 12px 4px 0;
+}
+
+/* Completed steps: filled accent with a checkmark */
+.flow-step.is-done .flow-step-dot {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.flow-step.is-done .flow-step-label {
+  color: var(--text-primary);
+}
+
+.flow-line.is-done {
+  background-color: var(--accent);
+}
+
+/* Current step: outlined in accent, not filled */
+.flow-step.is-current .flow-step-dot {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.flow-step.is-current .flow-step-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .flow-step-label {
+    display: none; /* keep just the numbered dots on very small screens */
+  }
+}
+
+/* Tighter variant used inside the narrow payment confirmation box */
+.flow-stepper-compact {
+  max-width: 100%;
+  margin-bottom: var(--space-lg);
+}
+
+.flow-stepper-compact .flow-step-dot {
+  width: 22px;
+  height: 22px;
+}
+
+.flow-stepper-compact .flow-step-label {
+  font-size: 11px;
+}
+
+.services-page {
+  padding-top: var(--space-xl);
+}
+
+/* Grid for the full services list: 3 columns on desktop */
+.services-grid-full {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.service-card-full {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card-full:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Placeholder "image" area - a colored panel with a large icon.
+   Using colored panels instead of external photos keeps the
+   page fast, dependency-free, and safe to host on GitHub Pages. */
+.service-card-image {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+.service-card-image svg {
+  width: 48px;
+  height: 48px;
+}
+
+.service-img-electrician { background-color: #FEF3E2; }
+.service-img-plumber     { background-color: #E4EFEE; }
+.service-img-ac          { background-color: #E8F8F5; }
+.service-img-carpenter   { background-color: #F5EBE0; }
+.service-img-cleaning    { background-color: #E9F2F1; }
+
+.service-card-body {
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.service-card-body h3 {
+  font-size: 19px;
+  margin-bottom: var(--space-xs);
+}
+
+.service-card-body p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.service-price {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.service-price strong {
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.service-card-actions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: auto; /* pushes the buttons to the bottom of the card */
+}
+
+.service-card-actions .btn {
+  flex: 1;
+}
+
+/* Smaller button variant for card actions, so two buttons fit side by side */
+.btn-sm {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+
+/* Tablet and mobile adjustments for the services grid */
+@media (max-width: 900px) {
+  .services-grid-full {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid-full {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card-actions {
+    flex-direction: column;
+  }
+}
+
+
+/* =========================================================
+   15. SERVICE DETAILS PAGE (service-details.html)
+   ========================================================= */
+
+.details-page {
+  padding-top: var(--space-xl);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+/* ----- Left column: image + quick facts + buttons ----- */
+.details-side {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.details-image {
+  height: 160px;
+  color: var(--accent);
+  border-radius: 0; /* overrides the smaller radius used on card previews */
+}
+
+.details-image svg {
+  width: 64px;
+  height: 64px;
+}
+
+.details-facts {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.details-fact {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-md);
+}
+
+.details-fact:last-child {
+  margin-bottom: 0;
+}
+
+.details-fact-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.details-fact-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.details-side .btn {
+  display: block;
+  margin: var(--space-sm) var(--space-md) 0;
+  width: calc(100% - (var(--space-md) * 2));
+}
+
+.details-back-btn {
+  margin-bottom: var(--space-md);
+}
+
+/* ----- Right column: description, includes, notes ----- */
+.details-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.details-block {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.details-block h2 {
+  font-size: 19px;
+  margin-bottom: var(--space-sm);
+}
+
+.details-block p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.details-list li {
+  font-size: 15px;
+  color: var(--text-primary);
+  padding-left: 24px;
+  position: relative;
+}
+
+/* Simple checkmark before each included item, drawn with CSS only */
+.details-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.details-notes {
+  background-color: var(--surface-alt);
+  border-color: var(--surface-alt);
+}
+
+.details-notes p {
+  color: var(--primary);
+}
+
+
+/* Responsive: stack the two columns on smaller screens */
+@media (max-width: 800px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   16. BOOKING PAGE (booking.html)
+   ========================================================= */
+
+.booking-page {
+  padding-top: var(--space-xl);
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+/* ----- Selected service read-only box ----- */
+.selected-service {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.selected-service-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  background-color: var(--white);
+  border-radius: 50%;
+}
+
+.selected-service-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.selected-service-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.selected-service-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.selected-service-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* ----- Booking form card ----- */
+.booking-form-wrap {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Places Preferred Date and Preferred Time side by side */
+.form-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.optional-tag {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* ----- Booking summary side panel ----- */
+.booking-summary {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 90px; /* stays in view below the sticky navbar while scrolling the form */
+}
+
+.booking-summary h2 {
+  font-size: 18px;
+  margin-bottom: var(--space-md);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: 13px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-row span:first-child {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.summary-row span:last-child {
+  color: var(--text-primary);
+  font-weight: 500;
+  text-align: right;
+  word-break: break-word;
+}
+
+.summary-row-total {
+  border-bottom: none;
+  margin-top: var(--space-xs);
+  padding-top: var(--space-sm);
+  border-top: 1.5px solid var(--border);
+}
+
+.summary-row-total span:last-child {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.summary-note {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: var(--space-md);
+}
+
+
+/* Responsive: stack the form and summary panel on smaller screens */
+@media (max-width: 900px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .selected-service {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* =========================================================
+   17. PAYMENT PAGE (payment.html)
+   ========================================================= */
+
+.payment-page {
+  padding-top: var(--space-xl);
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.payment-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ----- Payment method selector cards ----- */
+.method-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.method-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  padding: var(--space-md) var(--space-sm);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.method-card input[type="radio"] {
+  /* The radio input is still present for accessibility/keyboard use,
+     but the card itself (not a visible dot) shows the selected state */
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.method-card .method-icon {
+  display: flex;
+}
+
+.method-card .method-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.method-card.selected {
+  border-color: var(--accent);
+  background-color: var(--surface-alt);
+  color: var(--accent);
+}
+
+.payment-fields {
+  margin-top: var(--space-sm);
+}
+
+.cash-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+  background-color: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+
+/* ----- Status badges (reused on future dashboard/status pages too) ----- */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.badge-pending {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+.badge-assigned {
+  background-color: var(--surface-alt);
+  color: var(--primary);
+}
+
+.badge-completed {
+  background-color: var(--success-bg);
+  color: var(--success);
+}
+
+
+/* ----- Empty state (shown if no booking was found) ----- */
+.empty-state {
+  padding: var(--space-2xl) 0;
+}
+
+.empty-state-box {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state-box p {
+  color: var(--text-secondary);
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+
+/* ----- Payment confirmation screen ----- */
+.confirmation-page {
+  padding: var(--space-2xl) 0;
+}
+
+.confirmation-box {
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.confirmation-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+  background-color: var(--success-bg);
+  color: var(--success);
+  border-radius: 50%;
+}
+
+.confirmation-box h1 {
+  font-size: 24px;
+  margin-bottom: var(--space-xs);
+}
+
+.confirmation-box > p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: var(--space-lg);
+}
+
+.confirmation-details {
+  text-align: left;
+  margin-bottom: var(--space-lg);
+}
+
+
+/* Responsive adjustments for the payment page */
+@media (max-width: 900px) {
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .method-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   18. APP LAYOUT (Sidebar) - used by Dashboard and,
+   later, the Admin pages.
+   ========================================================= */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: var(--white);
+  border-right: 1px solid var(--border);
+  padding: var(--space-lg) 0;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.app-sidebar-logo {
+  padding: 0 var(--space-lg) var(--space-lg);
+}
+
+.app-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.app-nav-link {
+  padding: 12px var(--space-lg);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-left: 3px solid transparent;
+  text-align: left;
+  background: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.app-nav-link:hover {
+  color: var(--accent);
+  background-color: var(--surface-alt);
+}
+
+.app-nav-link.active {
+  color: var(--accent);
+  background-color: var(--surface-alt);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.app-logout-btn {
+  margin-top: auto;
+  color: var(--danger);
+}
+
+.app-logout-btn:hover {
+  background-color: var(--danger-bg);
+  color: var(--danger);
+}
+
+.app-main {
+  flex-grow: 1;
+  padding: var(--space-lg) var(--space-xl);
+  max-width: 1100px;
+}
+
+
+/* =========================================================
+   19. CUSTOMER DASHBOARD (dashboard.html)
+   ========================================================= */
+
+.dash-welcome {
+  margin-bottom: var(--space-lg);
+}
+
+.dash-welcome h1 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.dash-welcome p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.dash-card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.dash-card-header h2 {
+  font-size: 17px;
+}
+
+/* ----- Profile summary card ----- */
+.profile-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--surface-alt);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+.profile-info h3 {
+  font-size: 17px;
+  margin-bottom: 2px;
+}
+
+.profile-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ----- Current booking card ----- */
+.current-booking-info {
+  margin-bottom: var(--space-md);
+}
+
+/* Booking status tracker: 3 dots connected by lines */
+.status-tracker {
+  display: flex;
+  align-items: center;
+  margin: var(--space-md) 0 var(--space-lg);
+}
+
+.status-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--border);
+  border: 2px solid var(--border);
+}
+
+.status-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.status-line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--border);
+  margin: 0 4px;
+  margin-bottom: 20px; /* aligns with the dots, not the labels below them */
+}
+
+/* Completed steps turn blue so progress is visible at a glance */
+.status-step.status-complete .status-dot {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.status-step.status-complete .status-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ----- Tables shared by Booking History + Payment Information ----- */
+.booking-history-card,
+.payment-info-card {
+  grid-column: span 2;
+}
+
+.dash-table-wrap {
+  overflow-x: auto;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dash-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background-color: var(--surface-alt);
+  padding: 10px 12px;
+}
+
+.dash-table td {
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-table tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* Responsive: stack everything on smaller screens */
+@media (max-width: 900px) {
+  .app-sidebar {
+    width: 200px;
+  }
+
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-history-card,
+  .payment-info-card {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .app-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--space-sm) var(--space-md);
+    overflow-x: auto;
+  }
+
+  .app-sidebar-logo {
+    padding: 0 var(--space-md) 0 0;
+  }
+
+  .app-sidebar-nav {
+    flex-direction: row;
+    flex-grow: 0;
+  }
+
+  .app-nav-link {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+
+  .app-nav-link.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--accent);
+  }
+
+  .app-logout-btn {
+    margin-top: 0;
+    margin-left: auto;
+  }
+
+  .app-main {
+    padding: var(--space-lg) var(--space-md);
+  }
+}
+
+
+/* =========================================================
+   20. ADMIN DASHBOARD (admin.html)
+   ========================================================= */
+
+/* Dark sidebar variant, layered on top of the base .app-sidebar
+   rules from section 18 so Admin visually differs from the
+   Customer Dashboard's light sidebar. */
+.app-sidebar-admin {
+  background-color: var(--primary);
+  border-right: none;
+}
+
+.app-sidebar-admin .app-sidebar-logo {
+  color: var(--white);
+}
+
+.app-sidebar-admin .app-nav-link {
+  color: #A9C4C6;
+}
+
+.app-sidebar-admin .app-nav-link:hover {
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.app-sidebar-admin .app-nav-link.active {
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left-color: var(--white);
+}
+
+.app-sidebar-admin .app-logout-btn {
+  color: #F3B4B4;
+}
+
+.app-sidebar-admin .app-logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+/* ----- Overview stat cards ----- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.stat-card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.stat-number.stat-pending {
+  color: var(--warning);
+}
+
+.stat-number.stat-completed {
+  color: var(--success);
+}
+
+/* ----- Booking status overview bars ----- */
+.status-overview-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.status-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.status-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.status-bar-track {
+  width: 100%;
+  height: 10px;
+  background-color: var(--surface-alt);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.status-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+
+/* Responsive adjustments for the admin dashboard */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   21. ADMIN PANEL - MANAGEMENT SECTIONS
+   Styles for the single-page admin panel added in this update:
+   section switching, the header-with-button row, table action
+   buttons, and the shared modal popup.
+   ========================================================= */
+
+/* ----- Section switching ----- */
+/* Only the ".active" section is visible - script.js toggles this class */
+.admin-section {
+  display: none;
+}
+
+.admin-section.active {
+  display: block;
+}
+
+/* Header row used when a section needs a title + an "Add" button together */
+.dash-welcome-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+/* ----- Select dropdowns (match the existing input/textarea styling) ----- */
+.form-field select {
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--white);
+  color: var(--text-primary);
+}
+
+.form-field select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ----- Row action buttons inside admin tables ----- */
+.table-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.row-btn {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.row-btn-view {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.row-btn-view:hover {
+  background-color: var(--surface-alt);
+}
+
+.row-btn-edit {
+  color: var(--primary);
+  border-color: var(--border);
+}
+
+.row-btn-edit:hover {
+  background-color: var(--surface-alt);
+  border-color: var(--primary);
+}
+
+.row-btn-delete {
+  color: var(--danger);
+  border-color: var(--border);
+}
+
+.row-btn-delete:hover {
+  background-color: var(--danger-bg);
+  border-color: var(--danger);
+}
+
+.row-btn-assign {
+  color: var(--white);
+  background-color: var(--accent);
+}
+
+.row-btn-assign:hover {
+  background-color: var(--accent-dark);
+}
+
+.row-btn-status {
+  color: var(--white);
+  background-color: var(--success);
+}
+
+.row-btn-status:hover {
+  background-color: var(--success-dark);
+}
+
+
+/* ----- Shared modal popup ----- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  z-index: 1000;
+}
+
+/* The [hidden] attribute already sets display:none by default,
+   but it's listed here for clarity since we also use display:flex above */
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-box {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+  font-size: 17px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modal-body .form-field {
+  margin-bottom: var(--space-sm);
+}
+
+.modal-body .btn {
+  margin-top: var(--space-sm);
+}
+
+
+/* =========================================================
+   22. CUSTOMER PROFILE PAGE (profile.html)
+   ========================================================= */
+
+.profile-page-card {
+  max-width: 480px;
+}
+
+.profile-page-summary {
+  flex-direction: row;
+  text-align: left;
+  justify-content: flex-start;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-page-summary .profile-info {
+  text-align: left;
+}
+
+.profile-demo-note {
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+
+/* =========================================================
+   23. ADMIN LOGIN PAGE (admin-login.html)
+   Standalone full-page dark background, distinct from the
+   light customer-facing login page.
+   ========================================================= */
+
+.admin-auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background-color: var(--primary);
+  background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.04), transparent 45%);
+}
+
+.admin-auth-page .auth-card {
+  width: 100%;
+}

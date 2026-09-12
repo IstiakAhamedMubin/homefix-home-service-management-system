@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- HEADER / NAVIGATION BAR       -->
+  <!-- Same navbar as index.html so the site feels consistent -->
+  <!-- ============================= -->
+  <header class="site-header">
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">HomeFix</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="nav-active">Services</a></li>
+        <li><a href="index.html#why-us">Why HomeFix</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="btn btn-primary">Register</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- PAGE HEADER                   -->
+  <!-- ============================= -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Services</h1>
+      <p>Browse our most requested home services and book the one you need.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SERVICES FULL LIST SECTION    -->
+  <!-- ============================= -->
+  <section class="services-page">
+    <div class="container">
+
+      <div class="services-grid-full">
+
+        <!-- Service: Electrician -->
+        <div class="service-card-full">
+          <div class="service-card-image service-img-electrician">
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M13 2L5 14h5l-1 8 9-12h-5l1-8z"/></svg></span>
+          </div>
+          <div class="service-card-body">
+            <h3>Electrician</h3>
+            <p>Wiring, fixture installation, and safe electrical repairs for your home.</p>
+            <p class="service-price">Starting at <strong>৳500</strong></p>
+            <div class="service-card-actions">
+              <a href="service-details.html?service=electrician" class="btn btn-secondary btn-sm">View Details</a>
+              <a href="booking.html?service=electrician" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service: Plumber -->
+        <div class="service-card-full">
+          <div class="service-card-image service-img-plumber">
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M12 2C12 2 5 11 5 15.5a7 7 0 0 0 14 0C19 11 12 2 12 2z"/></svg></span>
+          </div>
+          <div class="service-card-body">
+            <h3>Plumber</h3>
+            <p>Leak fixes, pipe installation, and drainage solutions done right.</p>
+            <p class="service-price">Starting at <strong>৳450</strong></p>
+            <div class="service-card-actions">
+              <a href="service-details.html?service=plumber" class="btn btn-secondary btn-sm">View Details</a>
+              <a href="booking.html?service=plumber" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service: AC Repair -->
+        <div class="service-card-full">
+          <div class="service-card-image service-img-ac">
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="48" height="48"><line x1="12" y1="3" x2="12" y2="21"/><line x1="4.9" y1="7" x2="19.1" y2="17"/><line x1="19.1" y1="7" x2="4.9" y2="17"/></svg></span>
+          </div>
+          <div class="service-card-body">
+            <h3>AC Repair</h3>
+            <p>Servicing, repair, and installation for all major AC brands.</p>
+            <p class="service-price">Starting at <strong>৳800</strong></p>
+            <div class="service-card-actions">
+              <a href="service-details.html?service=ac-repair" class="btn btn-secondary btn-sm">View Details</a>
+              <a href="booking.html?service=ac-repair" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service: Carpenter -->
+        <div class="service-card-full">
+          <div class="service-card-image service-img-carpenter">
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><g transform="rotate(-40 12 12)"><rect x="2" y="2" width="17" height="6" rx="1.5"/><rect x="4" y="8" width="4.5" height="14" rx="1.5"/></g></svg></span>
+          </div>
+          <div class="service-card-body">
+            <h3>Carpenter</h3>
+            <p>Furniture repair, fittings, and custom woodwork for your home.</p>
+            <p class="service-price">Starting at <strong>৳600</strong></p>
+            <div class="service-card-actions">
+              <a href="service-details.html?service=carpenter" class="btn btn-secondary btn-sm">View Details</a>
+              <a href="booking.html?service=carpenter" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service: Home Cleaning -->
+        <div class="service-card-full">
+          <div class="service-card-image service-img-cleaning">
+            <span><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="48" height="48"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></span>
+          </div>
+          <div class="service-card-body">
+            <h3>Home Cleaning</h3>
+            <p>Deep cleaning and move-in/move-out cleaning for every room.</p>
+            <p class="service-price">Starting at <strong>৳1000</strong></p>
+            <div class="service-card-actions">
+              <a href="service-details.html?service=home-cleaning" class="btn btn-secondary btn-sm">View Details</a>
+              <a href="booking.html?service=home-cleaning" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- FOOTER                        -->
+  <!-- Same footer as index.html      -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+        <span class="logo">HomeFix</span>
+        <p>A Web-Based Home Service Management System.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@homefix.example</p>
+        <p>Phone: +880 000-000000</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      &copy; <span id="currentYear"></span> HomeFix. All rights reserved.
+    </p>
+  </footer>
+
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

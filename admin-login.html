@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Standalone gate: no public navbar/footer here on purpose, so it's
+       visually distinct from the customer-facing login (matches the
+       original design spec: dark full-page background, centered card). -->
+  <section class="admin-auth-page">
+    <div class="auth-card">
+
+      <div class="auth-card-header">
+        <div class="auth-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h1>Admin Sign In</h1>
+        <p>Sign in to manage HomeFix bookings, providers, and payments.</p>
+      </div>
+
+      <!-- Frontend-only form: no backend, so we prevent the real
+           submit and just run basic validation with JavaScript -->
+      <form id="adminLoginForm" class="auth-form" novalidate>
+
+        <div class="form-field">
+          <label for="adminEmail">Admin Email</label>
+          <input
+            type="text"
+            id="adminEmail"
+            name="adminEmail"
+            placeholder="admin@homefix.example"
+            autocomplete="username"
+            required
+          >
+          <span class="field-error" id="adminEmailError"></span>
+        </div>
+
+        <div class="form-field">
+          <label for="adminPassword">Password</label>
+          <input
+            type="password"
+            id="adminPassword"
+            name="adminPassword"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+          <span class="field-error" id="adminPasswordError"></span>
+        </div>
+
+        <!-- Shown only if login is "successful" (demo purposes only) -->
+        <p class="form-success" id="adminLoginSuccess"></p>
+
+        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+
+      </form>
+
+      <p class="auth-switch">
+        <a href="index.html">&larr; Back to HomeFix</a>
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation,
+       and now admin login validation) -->
+  <script src="js/script.js"></script>
+</body>
+</html>
