@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Same sidebar layout as dashboard.html, so this feels like part of
+       the same logged-in area rather than a separate mini-app. -->
+  <div class="app-layout">
+
+    <aside class="app-sidebar">
+      <a href="index.html" class="logo app-sidebar-logo">HomeFix</a>
+
+      <nav class="app-sidebar-nav">
+        <a href="dashboard.html" class="app-nav-link">Dashboard</a>
+        <a href="dashboard.html#booking-history" class="app-nav-link">My Bookings</a>
+        <a href="profile.html" class="app-nav-link active">Profile</a>
+      </nav>
+
+      <button type="button" class="app-nav-link app-logout-btn" id="logoutBtn">Log Out</button>
+    </aside>
+
+
+    <main class="app-main">
+
+      <section class="dash-welcome">
+        <h1>My Profile</h1>
+        <p>View and update your account details.</p>
+      </section>
+
+      <section class="dash-card profile-page-card">
+
+        <div class="profile-summary profile-page-summary">
+          <div class="profile-avatar" id="profileAvatar">RK</div>
+          <div class="profile-info">
+            <h3 id="profileDisplayName">-</h3>
+            <p id="profileDisplayEmail">-</p>
+          </div>
+        </div>
+
+        <!-- Frontend-only form: there is no backend, so "saving" just
+             confirms the values on screen. Nothing is sent anywhere. -->
+        <form id="profileForm" class="auth-form" novalidate>
+
+          <div class="form-field">
+            <label for="profileName">Full Name</label>
+            <input type="text" id="profileName" name="profileName" autocomplete="name">
+          </div>
+
+          <div class="form-field">
+            <label for="profileEmailInput">Email</label>
+            <input type="email" id="profileEmailInput" name="profileEmailInput" autocomplete="email">
+          </div>
+
+          <div class="form-field">
+            <label for="profilePhoneInput">Phone Number</label>
+            <input type="tel" id="profilePhoneInput" name="profilePhoneInput" autocomplete="tel">
+          </div>
+
+          <div class="form-field">
+            <label for="profileAddressInput">Address</label>
+            <textarea id="profileAddressInput" name="profileAddressInput" rows="2"></textarea>
+          </div>
+
+          <p class="form-success" id="profileSaveMessage"></p>
+
+          <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+          <p class="summary-note profile-demo-note">This is a frontend demo - changes are shown on screen only and are not saved to a real account.</p>
+        </form>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation,
+       service data, dashboard/admin logic, and now this page's profile logic) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

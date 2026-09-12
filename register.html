@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- HEADER / NAVIGATION BAR       -->
+  <!-- Same navbar as index.html so the site feels consistent -->
+  <!-- ============================= -->
+  <header class="site-header">
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">HomeFix</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#why-us">Why HomeFix</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="btn btn-primary">Register</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- REGISTRATION SECTION          -->
+  <!-- ============================= -->
+  <section class="auth-section">
+    <div class="container auth-container">
+
+      <div class="auth-card auth-card-wide">
+
+        <div class="auth-card-header">
+          <div class="auth-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6"/><line x1="17" y1="8" x2="17" y2="14"/><line x1="14" y1="11" x2="20" y2="11"/></svg></div>
+          <h1>Create your account</h1>
+          <p>Register to book trusted home services in minutes.</p>
+        </div>
+
+        <!-- Frontend-only form: no backend, so we prevent the real
+             submit and just run basic validation with JavaScript -->
+        <form id="registerForm" class="auth-form" novalidate>
+
+          <div class="form-field">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="e.g. Rafiul Karim"
+              autocomplete="name"
+              required
+            >
+            <span class="field-error" id="fullNameError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="regEmail">Email</label>
+            <input
+              type="email"
+              id="regEmail"
+              name="regEmail"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+            <span class="field-error" id="regEmailError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="e.g. 01712345678"
+              autocomplete="tel"
+              required
+            >
+            <span class="field-error" id="phoneNumberError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="address">Address</label>
+            <textarea
+              id="address"
+              name="address"
+              rows="3"
+              placeholder="House, road, area, city"
+              required
+            ></textarea>
+            <span class="field-error" id="addressError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="regPassword">Password</label>
+            <input
+              type="password"
+              id="regPassword"
+              name="regPassword"
+              placeholder="At least 6 characters"
+              autocomplete="new-password"
+              required
+            >
+            <span class="field-error" id="regPasswordError"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Re-enter your password"
+              autocomplete="new-password"
+              required
+            >
+            <span class="field-error" id="confirmPasswordError"></span>
+          </div>
+
+          <!-- Shown only if registration passes validation (demo purposes only) -->
+          <p class="form-success" id="registerSuccess"></p>
+
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+
+        </form>
+
+        <p class="auth-switch">
+          Already have an account? <a href="login.html">Login here</a>
+        </p>
+
+      </div>
+
+      <p class="auth-back-link">
+        <a href="index.html">&larr; Back to Home</a>
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- FOOTER                        -->
+  <!-- Same footer as index.html      -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+        <span class="logo">HomeFix</span>
+        <p>A Web-Based Home Service Management System.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@homefix.example</p>
+        <p>Phone: +880 000-000000</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      &copy; <span id="currentYear"></span> HomeFix. All rights reserved.
+    </p>
+  </footer>
+
+
+  <!-- Shared JavaScript file (nav toggle, footer year, login + register validation) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

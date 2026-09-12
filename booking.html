@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Service - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- HEADER / NAVIGATION BAR       -->
+  <!-- Same navbar as index.html so the site feels consistent -->
+  <!-- ============================= -->
+  <header class="site-header">
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">HomeFix</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="nav-active">Services</a></li>
+        <li><a href="index.html#why-us">Why HomeFix</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="btn btn-primary">Register</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- PAGE HEADER                   -->
+  <!-- ============================= -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Book a Service</h1>
+      <p>Fill in the details below and review your booking summary before payment.</p>
+
+      <div class="flow-stepper">
+        <div class="flow-step is-done"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Service</span></div>
+        <div class="flow-line is-done"></div>
+        <div class="flow-step is-current"><span class="flow-step-dot">2</span><span class="flow-step-label">Details</span></div>
+        <div class="flow-line"></div>
+        <div class="flow-step"><span class="flow-step-dot">3</span><span class="flow-step-label">Payment</span></div>
+        <div class="flow-line"></div>
+        <div class="flow-step"><span class="flow-step-dot">4</span><span class="flow-step-label">Confirmation</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- BOOKING SECTION               -->
+  <!-- ============================= -->
+  <section class="booking-page">
+    <div class="container">
+
+      <div class="booking-grid">
+
+        <!-- ===== LEFT: BOOKING FORM ===== -->
+        <div class="booking-form-wrap">
+
+          <!-- Selected service (read-only, based on ?service= in the URL) -->
+          <div class="selected-service" id="selectedService">
+            <div class="selected-service-icon" id="selectedServiceIcon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+            <div class="selected-service-info">
+              <span class="selected-service-label">Selected Service</span>
+              <span class="selected-service-name" id="selectedServiceName">Loading...</span>
+            </div>
+            <a href="services.html" class="link-muted">Change</a>
+          </div>
+
+          <form id="bookingForm" class="booking-form" novalidate>
+
+            <div class="form-field">
+              <label for="customerName">Full Name</label>
+              <input type="text" id="customerName" name="customerName" placeholder="e.g. Rafiul Karim" required>
+              <span class="field-error" id="customerNameError"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="customerPhone">Phone Number</label>
+              <input type="tel" id="customerPhone" name="customerPhone" placeholder="e.g. 01712345678" required>
+              <span class="field-error" id="customerPhoneError"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="customerAddress">Address</label>
+              <textarea id="customerAddress" name="customerAddress" rows="2" placeholder="House, road, area, city" required></textarea>
+              <span class="field-error" id="customerAddressError"></span>
+            </div>
+
+            <div class="form-field-row">
+              <div class="form-field">
+                <label for="preferredDate">Preferred Date</label>
+                <input type="date" id="preferredDate" name="preferredDate" required>
+                <span class="field-error" id="preferredDateError"></span>
+              </div>
+
+              <div class="form-field">
+                <label for="preferredTime">Preferred Time</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+                <span class="field-error" id="preferredTimeError"></span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="problemDescription">Problem Description</label>
+              <textarea id="problemDescription" name="problemDescription" rows="3" placeholder="Describe the issue you need help with" required></textarea>
+              <span class="field-error" id="problemDescriptionError"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="additionalNotes">Additional Notes <span class="optional-tag">(optional)</span></label>
+              <textarea id="additionalNotes" name="additionalNotes" rows="2" placeholder="Anything else the provider should know"></textarea>
+            </div>
+
+            <p class="form-success" id="bookingSuccess"></p>
+
+            <button type="submit" class="btn btn-primary btn-block">Continue to Payment</button>
+
+          </form>
+
+        </div>
+
+        <!-- ===== RIGHT: LIVE BOOKING SUMMARY ===== -->
+        <aside class="booking-summary">
+          <h2>Booking Summary</h2>
+
+          <div class="summary-row">
+            <span>Service</span>
+            <span id="summaryService">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Name</span>
+            <span id="summaryName">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Phone</span>
+            <span id="summaryPhone">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Address</span>
+            <span id="summaryAddress">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Date</span>
+            <span id="summaryDate">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Time</span>
+            <span id="summaryTime">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Problem</span>
+            <span id="summaryProblem">-</span>
+          </div>
+
+          <div class="summary-row summary-row-total">
+            <span>Estimated Price</span>
+            <span id="summaryPrice">-</span>
+          </div>
+
+          <p class="summary-note">The final price is confirmed once a provider is assigned to your booking.</p>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- FOOTER                        -->
+  <!-- Same footer as index.html      -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+        <span class="logo">HomeFix</span>
+        <p>A Web-Based Home Service Management System.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@homefix.example</p>
+        <p>Phone: +880 000-000000</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      &copy; <span id="currentYear"></span> HomeFix. All rights reserved.
+    </p>
+  </footer>
+
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation,
+       service data, and now the booking form logic) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

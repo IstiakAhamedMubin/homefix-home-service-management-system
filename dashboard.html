@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       The Dashboard is a "logged in" area, so instead of the
+       public site's top navbar, it uses a sidebar layout - the
+       same pattern the Admin pages will use later.
+       ========================================================= -->
+  <div class="app-layout">
+
+    <!-- ============================= -->
+    <!-- SIDEBAR / NAVIGATION          -->
+    <!-- ============================= -->
+    <aside class="app-sidebar">
+      <a href="index.html" class="logo app-sidebar-logo">HomeFix</a>
+
+      <nav class="app-sidebar-nav">
+        <a href="dashboard.html" class="app-nav-link active">Dashboard</a>
+        <a href="dashboard.html#booking-history" class="app-nav-link">My Bookings</a>
+        <a href="profile.html" class="app-nav-link">Profile</a>
+      </nav>
+
+      <button type="button" class="app-nav-link app-logout-btn" id="logoutBtn">Log Out</button>
+    </aside>
+
+
+    <!-- ============================= -->
+    <!-- MAIN DASHBOARD CONTENT        -->
+    <!-- ============================= -->
+    <main class="app-main">
+
+      <!-- ----- 1. Welcome section ----- -->
+      <section class="dash-welcome">
+        <h1 id="welcomeHeading">Welcome back!</h1>
+        <p>Here's what's happening with your HomeFix bookings.</p>
+      </section>
+
+      <div class="dash-grid">
+
+        <!-- ----- 2. Customer profile summary ----- -->
+        <section class="dash-card profile-summary">
+          <div class="profile-avatar" id="profileAvatar">RK</div>
+          <div class="profile-info">
+            <h3 id="profileName">-</h3>
+            <p id="profileEmail">-</p>
+            <p id="profilePhone">-</p>
+          </div>
+          <a href="profile.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </section>
+
+        <!-- ----- 3 & 4. Current booking + booking status tracker ----- -->
+        <section class="dash-card current-booking">
+          <div class="dash-card-header">
+            <h2>Current Booking</h2>
+            <span class="badge" id="currentBookingBadge">-</span>
+          </div>
+
+          <div class="current-booking-info">
+            <div class="summary-row">
+              <span>Service</span>
+              <span id="currentBookingService">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Date</span>
+              <span id="currentBookingDate">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Reference</span>
+              <span id="currentBookingRef">-</span>
+            </div>
+          </div>
+
+          <!-- Booking status tracker: Pending -> Assigned -> Completed -->
+          <div class="status-tracker" id="statusTracker">
+            <div class="status-step" data-step="Pending">
+              <span class="status-dot"></span>
+              <span class="status-label">Pending</span>
+            </div>
+            <div class="status-line"></div>
+            <div class="status-step" data-step="Assigned">
+              <span class="status-dot"></span>
+              <span class="status-label">Assigned</span>
+            </div>
+            <div class="status-line"></div>
+            <div class="status-step" data-step="Completed">
+              <span class="status-dot"></span>
+              <span class="status-label">Completed</span>
+            </div>
+          </div>
+
+          <a href="dashboard.html" class="btn btn-primary btn-sm">View Booking Details</a>
+        </section>
+
+        <!-- ----- 5. Booking history ----- -->
+        <section class="dash-card booking-history-card" id="booking-history">
+          <div class="dash-card-header">
+            <h2>Booking History</h2>
+          </div>
+
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="bookingHistoryBody">
+                <!-- Rows are added here by script.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ----- 6. Payment information ----- -->
+        <section class="dash-card payment-info-card">
+          <div class="dash-card-header">
+            <h2>Payment Information</h2>
+          </div>
+
+          <div class="dash-table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="paymentInfoBody">
+                <!-- Rows are added here by script.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation,
+       service data, and now the dashboard demo-data logic) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

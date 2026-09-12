@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeFix - Home Service Management System</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- HEADER / NAVIGATION BAR       -->
+  <!-- ============================= -->
+  <header class="site-header">
+    <nav class="navbar">
+
+      <!-- Logo / Site name -->
+      <a href="index.html" class="logo">HomeFix</a>
+
+      <!-- Navigation links (shown on desktop, toggled on mobile) -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-active">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why HomeFix</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="btn btn-primary">Register</a></li>
+      </ul>
+
+      <!-- Hamburger button for mobile menu -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- HERO SECTION                  -->
+  <!-- ============================= -->
+  <section class="hero">
+    <div class="container">
+
+      <div class="hero-content">
+        <span class="hero-eyebrow">Trusted by homeowners across the city</span>
+        <h1>Home repairs, handled without the hassle.</h1>
+        <p>
+          Book trusted electricians, plumbers, and cleaners in minutes.
+          Track every job from request to completion with HomeFix.
+        </p>
+        <div class="hero-buttons">
+          <a href="services.html" class="btn btn-primary">Book a Service</a>
+          <a href="#services" class="btn btn-secondary">Explore Services</a>
+        </div>
+      </div>
+
+      <!-- A small "product preview" card instead of a stock photo -->
+      <div class="hero-visual">
+        <div class="hero-visual-card">
+          <div class="hero-visual-top">
+            <div class="hero-visual-icon">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="3" x2="12" y2="21"/><line x1="4.9" y1="7" x2="19.1" y2="17"/><line x1="19.1" y1="7" x2="4.9" y2="17"/></svg>
+            </div>
+            <div>
+              <strong>AC Repair</strong>
+              <span class="badge badge-assigned">Assigned</span>
+            </div>
+          </div>
+
+          <div class="status-tracker hero-visual-tracker">
+            <div class="status-step status-complete" data-step="Pending">
+              <span class="status-dot"></span>
+              <span class="status-label">Pending</span>
+            </div>
+            <div class="status-line"></div>
+            <div class="status-step status-complete" data-step="Assigned">
+              <span class="status-dot"></span>
+              <span class="status-label">Assigned</span>
+            </div>
+            <div class="status-line"></div>
+            <div class="status-step" data-step="Completed">
+              <span class="status-dot"></span>
+              <span class="status-label">Completed</span>
+            </div>
+          </div>
+
+          <div class="hero-visual-provider">
+            <span>Provider</span>
+            <strong>Abdul Karim</strong>
+          </div>
+        </div>
+
+        <div class="hero-visual-chips">
+          <span class="hero-visual-chip" title="Electrician">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L5 14h5l-1 8 9-12h-5l1-8z"/></svg>
+          </span>
+          <span class="hero-visual-chip" title="Plumber">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C12 2 5 11 5 15.5a7 7 0 0 0 14 0C19 11 12 2 12 2z"/></svg>
+          </span>
+          <span class="hero-visual-chip" title="Carpenter">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><g transform="rotate(-40 12 12)"><rect x="2" y="2" width="17" height="6" rx="1.5"/><rect x="4" y="8" width="4.5" height="14" rx="1.5"/></g></svg>
+          </span>
+          <span class="hero-visual-chip" title="Home Cleaning">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SHORT INTRODUCTION SECTION    -->
+  <!-- ============================= -->
+  <section class="intro">
+    <div class="container">
+      <h2>What is HomeFix?</h2>
+      <p>
+        HomeFix is a web-based home service management platform that connects
+        customers with trusted professionals for everyday home maintenance needs.
+        From a leaking pipe to a full home cleaning, HomeFix makes booking,
+        tracking, and paying for home services simple and reliable.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- SERVICES PREVIEW SECTION      -->
+  <!-- ============================= -->
+  <section class="services" id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <p class="section-subtitle">Choose from our most requested home services</p>
+
+      <div class="services-grid">
+
+        <!-- Service Card: Electrician -->
+        <div class="service-card">
+          <div class="service-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M13 2L5 14h5l-1 8 9-12h-5l1-8z"/></svg></div>
+          <h3>Electrician</h3>
+          <p>Wiring, fixtures, and electrical repairs done safely.</p>
+        </div>
+
+        <!-- Service Card: Plumber -->
+        <div class="service-card">
+          <div class="service-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2C12 2 5 11 5 15.5a7 7 0 0 0 14 0C19 11 12 2 12 2z"/></svg></div>
+          <h3>Plumber</h3>
+          <p>Leak fixes, pipe installation, and drainage solutions.</p>
+        </div>
+
+        <!-- Service Card: AC Repair -->
+        <div class="service-card">
+          <div class="service-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="24" height="24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="4.9" y1="7" x2="19.1" y2="17"/><line x1="19.1" y1="7" x2="4.9" y2="17"/></svg></div>
+          <h3>AC Repair</h3>
+          <p>Servicing, repair, and installation for all AC units.</p>
+        </div>
+
+        <!-- Service Card: Carpenter -->
+        <div class="service-card">
+          <div class="service-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><g transform="rotate(-40 12 12)"><rect x="2" y="2" width="17" height="6" rx="1.5"/><rect x="4" y="8" width="4.5" height="14" rx="1.5"/></g></svg></div>
+          <h3>Carpenter</h3>
+          <p>Furniture repair, fittings, and custom woodwork.</p>
+        </div>
+
+        <!-- Service Card: Home Cleaning -->
+        <div class="service-card">
+          <div class="service-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg></div>
+          <h3>Home Cleaning</h3>
+          <p>Deep cleaning and move-in/move-out cleaning services.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- WHY CHOOSE HOMEFIX SECTION    -->
+  <!-- ============================= -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <h2>Why Choose HomeFix?</h2>
+
+      <div class="why-us-grid">
+
+        <div class="why-card">
+          <div class="why-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Verified Providers</h3>
+          <p>Every service provider is reviewed and managed by our admin team.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></div>
+          <h3>Easy Booking</h3>
+          <p>Book a service in a few clicks and track its progress in real time.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H3v9l10.5 10.5a2 2 0 0 0 2.8 0l6.7-6.7a2 2 0 0 0 0-2.8L12 2z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+          <h3>Transparent Pricing</h3>
+          <p>See the full cost upfront before confirming your booking.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 5-5"/></svg></div>
+          <h3>Reliable Support</h3>
+          <p>Clear booking status updates from Pending to Completed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- CALL-TO-ACTION SECTION        -->
+  <!-- ============================= -->
+  <section class="cta">
+    <div class="container cta-content">
+      <h2>Ready to get your home fixed?</h2>
+      <p>Join HomeFix today and book your first service in minutes.</p>
+      <a href="register.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- FOOTER                        -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+        <span class="logo">HomeFix</span>
+        <p>A Web-Based Home Service Management System.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@homefix.example</p>
+        <p>Phone: +880 000-000000</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      &copy; <span id="currentYear"></span> HomeFix. All rights reserved.
+    </p>
+  </footer>
+
+
+  <!-- Link to our JavaScript file (placed at the end so the HTML loads first) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

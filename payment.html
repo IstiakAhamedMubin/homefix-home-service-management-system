@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment - HomeFix</title>
+
+  <!-- Google Fonts: Manrope for headings, Inter for body text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Link to our main stylesheet (shared across every page) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- HEADER / NAVIGATION BAR       -->
+  <!-- Same navbar as index.html so the site feels consistent -->
+  <!-- ============================= -->
+  <header class="site-header">
+    <nav class="navbar">
+
+      <a href="index.html" class="logo">HomeFix</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="nav-active">Services</a></li>
+        <li><a href="index.html#why-us">Why HomeFix</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="btn btn-primary">Register</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </header>
+
+
+  <!-- ============================= -->
+  <!-- PAGE HEADER                   -->
+  <!-- ============================= -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Payment</h1>
+      <p>Review your booking and complete payment to confirm your service.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- NO BOOKING FOUND STATE        -->
+  <!-- Shown only if the user opens this page without booking first -->
+  <!-- ============================= -->
+  <section class="empty-state" id="noBookingState" hidden>
+    <div class="container">
+      <div class="empty-state-box">
+        <h2>No booking found</h2>
+        <p>It looks like you haven't started a booking yet. Please choose a service first.</p>
+        <a href="services.html" class="btn btn-primary">Browse Services</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- PAYMENT SECTION (main form)   -->
+  <!-- ============================= -->
+  <section class="payment-page" id="paymentFormSection">
+    <div class="container">
+
+      <div class="flow-stepper">
+        <div class="flow-step is-done"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Service</span></div>
+        <div class="flow-line is-done"></div>
+        <div class="flow-step is-done"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Details</span></div>
+        <div class="flow-line is-done"></div>
+        <div class="flow-step is-current"><span class="flow-step-dot">3</span><span class="flow-step-label">Payment</span></div>
+        <div class="flow-line"></div>
+        <div class="flow-step"><span class="flow-step-dot">4</span><span class="flow-step-label">Confirmation</span></div>
+      </div>
+
+      <div class="payment-grid">
+
+        <!-- ===== LEFT: SUMMARY + CUSTOMER INFO + PAYMENT METHOD ===== -->
+        <div class="payment-main">
+
+          <!-- Booking summary card -->
+          <div class="details-block">
+            <h2>Booking Summary</h2>
+
+            <div class="summary-row">
+              <span>Selected Service</span>
+              <span id="paySummaryService">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Preferred Date</span>
+              <span id="paySummaryDate">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Preferred Time</span>
+              <span id="paySummaryTime">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Problem Description</span>
+              <span id="paySummaryProblem">-</span>
+            </div>
+          </div>
+
+          <!-- Customer information card -->
+          <div class="details-block">
+            <h2>Customer Information</h2>
+
+            <div class="summary-row">
+              <span>Name</span>
+              <span id="paySummaryName">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Phone</span>
+              <span id="paySummaryPhone">-</span>
+            </div>
+            <div class="summary-row">
+              <span>Address</span>
+              <span id="paySummaryAddress">-</span>
+            </div>
+          </div>
+
+          <!-- Payment method card -->
+          <div class="details-block">
+            <h2>Payment Method</h2>
+
+            <div class="method-options" id="methodOptions">
+              <label class="method-card" data-method="cash">
+                <input type="radio" name="paymentMethod" value="cash" checked>
+                <span class="method-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <span>Cash on Service</span>
+              </label>
+
+              <label class="method-card" data-method="mobile">
+                <input type="radio" name="paymentMethod" value="mobile">
+                <span class="method-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+                <span>Mobile Banking</span>
+              </label>
+
+              <label class="method-card" data-method="card">
+                <input type="radio" name="paymentMethod" value="card">
+                <span class="method-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></span>
+                <span>Card</span>
+              </label>
+            </div>
+
+            <form id="paymentForm" novalidate>
+
+              <!-- Shown only when "Mobile Banking" is selected -->
+              <div class="payment-fields" id="mobileFields" hidden>
+                <div class="form-field">
+                  <label for="mobileNumber">Mobile Banking Number</label>
+                  <input type="tel" id="mobileNumber" placeholder="e.g. 01712345678">
+                  <span class="field-error" id="mobileNumberError"></span>
+                </div>
+              </div>
+
+              <!-- Shown only when "Card" is selected -->
+              <div class="payment-fields" id="cardFields" hidden>
+                <div class="form-field">
+                  <label for="cardNumber">Card Number</label>
+                  <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                  <span class="field-error" id="cardNumberError"></span>
+                </div>
+                <div class="form-field-row">
+                  <div class="form-field">
+                    <label for="cardExpiry">Expiry (MM/YY)</label>
+                    <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                    <span class="field-error" id="cardExpiryError"></span>
+                  </div>
+                  <div class="form-field">
+                    <label for="cardCvc">CVC</label>
+                    <input type="text" id="cardCvc" placeholder="123" maxlength="3">
+                    <span class="field-error" id="cardCvcError"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shown only when "Cash on Service" is selected -->
+              <p class="payment-fields cash-note" id="cashNote">
+                You'll pay the provider directly once the service is completed.
+              </p>
+
+            </form>
+
+          </div>
+
+        </div>
+
+        <!-- ===== RIGHT: ORDER TOTAL + PAY BUTTON ===== -->
+        <aside class="booking-summary">
+          <h2>Order Total</h2>
+
+          <div class="summary-row">
+            <span>Service Charge</span>
+            <span id="payServiceCharge">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Platform Fee</span>
+            <span id="payPlatformFee">-</span>
+          </div>
+          <div class="summary-row summary-row-total">
+            <span>Total Amount</span>
+            <span id="payTotalAmount">-</span>
+          </div>
+
+          <p class="form-success" id="paymentPageError"></p>
+
+          <button type="submit" form="paymentForm" class="btn btn-primary btn-block" id="confirmPaymentBtn">
+            Confirm Payment
+          </button>
+
+          <p class="summary-note">This is a frontend simulation only. No real payment gateway is connected.</p>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- PAYMENT CONFIRMATION (hidden until payment succeeds) -->
+  <!-- ============================= -->
+  <section class="confirmation-page" id="paymentConfirmation" hidden>
+    <div class="container">
+      <div class="confirmation-box">
+
+        <div class="flow-stepper flow-stepper-compact">
+          <div class="flow-step is-done"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Service</span></div>
+          <div class="flow-line is-done"></div>
+          <div class="flow-step is-done"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Details</span></div>
+          <div class="flow-line is-done"></div>
+          <div class="flow-step is-done"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Payment</span></div>
+          <div class="flow-line is-done"></div>
+          <div class="flow-step is-done is-current"><span class="flow-step-dot"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M4 12.5l5 5L20 7"/></svg></span><span class="flow-step-label">Confirmation</span></div>
+        </div>
+
+        <div class="confirmation-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M4 12.5l5 5L20 7"/></svg></div>
+        <h1>Payment Successful</h1>
+        <p>Your booking has been confirmed. A copy of your receipt is shown below.</p>
+
+        <div class="confirmation-details">
+          <div class="summary-row">
+            <span>Reference Number</span>
+            <span id="confirmReference">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Service</span>
+            <span id="confirmService">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Payment Method</span>
+            <span id="confirmMethod">-</span>
+          </div>
+          <div class="summary-row summary-row-total">
+            <span>Amount Paid</span>
+            <span id="confirmAmount">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Status</span>
+            <span class="badge badge-pending">Pending</span>
+          </div>
+        </div>
+
+        <a href="dashboard.html" class="btn btn-primary btn-block">Go to Customer Dashboard</a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================= -->
+  <!-- FOOTER                        -->
+  <!-- Same footer as index.html      -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+        <span class="logo">HomeFix</span>
+        <p>A Web-Based Home Service Management System.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="register.html">Register</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@homefix.example</p>
+        <p>Phone: +880 000-000000</p>
+      </div>
+
+    </div>
+
+    <p class="footer-bottom">
+      &copy; <span id="currentYear"></span> HomeFix. All rights reserved.
+    </p>
+  </footer>
+
+
+  <!-- Shared JavaScript file (nav toggle, footer year, form validation,
+       service data, and now the payment page logic) -->
+  <script src="js/script.js"></script>
+</body>
+</html>
